@@ -301,7 +301,7 @@ $( "#dialog-link, #icons li" ).hover(
 		$.ajax({ 
 		   type: "GET",
 		   dataType: "jsonp",
-		   url: "http://healthwebconsole-demo.rhel-cdk.10.1.2.2.xip.io/his/registry/"+$('input[name=firstname]').val()+"/"+$('input[name=familyname]').val()+"/"+$('input[name=hisId]').val(),
+		   url: "http://healthwebconsole-fusedemo.192.168.137.3.xip.io/his/registry/"+$('input[name=firstname]').val()+"/"+$('input[name=familyname]').val()+"/"+$('input[name=hisId]').val(),
 		   success: function(data){        
 		     alert(data);
 		   }
@@ -335,7 +335,7 @@ $( "#dialog-link, #icons li" ).hover(
 		$.ajax({ 
 		   type: "GET",
 		   dataType: "jsonp",
-		   url: "http://healthwebconsole-demo.rhel-cdk.10.1.2.2.xip.io/his/dotest/"+$('input[name=hisId]').val()+"/"+$( "#dept option:selected" ).val()+"/"+$('input[name=testdetail]').val()+"/"+$('input[name=observation]').val(),
+		   url: "http://healthwebconsole-fusedemo.192.168.137.3.xip.io/his/dotest/"+$('input[name=hisId]').val()+"/"+$( "#dept option:selected" ).val()+"/"+$('input[name=testdetail]').val()+"/"+$('input[name=observation]').val(),
 		   success: function(data){        
 		     alert(data);
 		   }
@@ -348,7 +348,7 @@ $( "#dialog-link, #icons li" ).hover(
 		$.ajax({ 
 		   type: "GET",
 		   dataType: "jsonp",
-		   url: "http://healthwebconsole-demo.rhel-cdk.10.1.2.2.xip.io/his/prescribe/"+$('input[name=hisId]').val()+"/"+$('#interval option:selected').val()+"/"+$('#drugs option:selected').val(),
+		   url: "http://healthwebconsole-fusedemo.192.168.137.3.xip.io/his/prescribe/"+$('input[name=hisId]').val()+"/"+$('#interval option:selected').val()+"/"+$('#drugs option:selected').val(),
 		   success: function(data){        
 		     alert(data);
 		   }
@@ -375,28 +375,28 @@ $(document).ready(function() {
     try{
 
 			//##Displaying messaging in Clinic Console
-			var clinicsocket = new WebSocket("ws://clinicservice-demo.rhel-cdk.10.1.2.2.xip.io/demo");
+			var clinicsocket = new WebSocket("ws://clinicservice-fusedemo.192.168.137.3.xip.io/demo");
 			clinicsocket.onopen = function(){ clinicMessage('Starting Clinic System Simulator v 1.0.0 ......');}
 			clinicsocket.onmessage = function(msg){clinicMessage('Patient===> '+msg.data+' admitted!');}
 			clinicsocket.onclose = function(){clinicMessage('Clinic System shutdown...');}
     	function clinicMessage(msg){$('#clinicDiv').html(message(clinicConsoleArray,msg));}
 
 			//##Displaying messaging in Laboratory Console
-			var labsocket = new WebSocket("ws://laboratoryservice-demo.rhel-cdk.10.1.2.2.xip.io/demo");
+			var labsocket = new WebSocket("ws://laboratoryservice-fusedemo.192.168.137.3.xip.io/demo");
 			labsocket.onopen = function(){ labMessage('Starting Laboratory System Simulator v 1.4.0 ......');}
 			labsocket.onmessage = function(msg){labMessage(msg.data);}
 			labsocket.onclose = function(){labMessage('Laboratory System shutdown...');}
     	function labMessage(msg){$('#labDiv').html(message(labConsoleArray,msg));}
     	
 			//##Displaying messaging in Radiology Console
-			var radiologysocket = new WebSocket("ws://radiologyservice-demo.rhel-cdk.10.1.2.2.xip.io/demo");
+			var radiologysocket = new WebSocket("ws://radiologyservice-fusedemo.192.168.137.3.xip.io/demo");
 			radiologysocket.onopen = function(){ radiologyMessage('Starting Radiology System Simulator v 2.0.5 ......');}
 			radiologysocket.onmessage = function(msg){radiologyMessage('Patient '+msg.data);}
 			radiologysocket.onclose = function(){radiologyMessage('Radiology System shutdown...');}
     	function radiologyMessage(msg){$('#radiologyDiv').html(message(radiologyConsoleArray,msg));}
     	
     	//##Connect to ESB Message 
-    	var esbmsgsocket = new WebSocket("ws://hisesb-demo.rhel-cdk.10.1.2.2.xip.io/demo");
+    	var esbmsgsocket = new WebSocket("ws://hisesb-fusedemo.192.168.137.3.xip.io/demo");
 			esbmsgsocket.onopen = function(){console.log('Starting getting ESB messages ......');}
 			
 			esbmsgsocket.onmessage = function(msg){
@@ -455,7 +455,7 @@ function populateTable() {
     var tableContent = '';
 
 
-    $.get( 'http://healthwebconsole-demo.rhel-cdk.10.1.2.2.xip.io/his/allpatients', function( data ) {
+    $.get( 'http://healthwebconsole-fusedemo.192.168.137.3.xip.io/his/allpatients', function( data ) {
 				var lineByline = data.split('\n');
         $.each(lineByline , function(index,value){
         	
@@ -482,7 +482,7 @@ function populateTable() {
 function populatePharmacyTable(pharmacyhisid) {
 
     var tableContent = '';
-	  var pharmacyUrl = 'http://healthwebconsole-demo.rhel-cdk.10.1.2.2.xip.io/his/pharmacy/'+pharmacyhisid;
+	  var pharmacyUrl = 'http://healthwebconsole-fusedemo.192.168.137.3.xip.io/his/pharmacy/'+pharmacyhisid;
 		
 		
 		if("" == pharmacyhisid){
